@@ -1,0 +1,21 @@
+.link {
+  height: 68%;
+  width: 5%;
+}
+
+.icon {
+  height: 100%;
+  width: 100%;
+  padding: 3px;
+  opacity: 0.5;
+  border: 1px solid rgba(207, 92, 120, 0);
+  cursor: pointer;
+  transition: 0.5s all;
+}
+
+.icon:hover {
+  border: 1px solid rgba(207, 92, 120, 0.1);
+  border-radius: 10px;
+  transform: translate(2px, 2px);
+  opacity: 0.9;
+}

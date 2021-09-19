@@ -1,0 +1,27 @@
+.navItem {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 20%;
+  height: 100%;
+}
+
+.navLink {
+  text-decoration: none;
+  color: rgba(207, 92, 120);
+  opacity: 0.6;
+  font-size: 22px;
+  font-weight: 400;
+  transition: 0.5s all;
+  border: 1px solid rgba(207, 92, 120, 0);
+  padding: 5px 10px;
+}
+
+.navLink:hover {
+  border: 1px solid rgba(207, 92, 120, 0.1);
+  border-radius: 10px;
+  transform: translate(2px, 2px);
+  opacity: 1;
+  font-size: 24px;
+}
