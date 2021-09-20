@@ -1,18 +1,25 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { signOut } from "../../redux/actions/userAC";
 import Navbar from "../Navbar/Navbar";
-import Icon from "../UI/Icons/Icon";
+import Icon from "../UI/Icon/Icon";
+import home from "../../icons/home.svg";
+
 import header from "./header.module.css";
 
 export default function Header() {
   const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.isAuth);
   const isNotMain = useSelector((state) => state.isNotMain);
+  const router = useHistory();
+
+    const handler = () => {
+        router.push("/");
+    }
 
   return (
     <div className={header.container}>
-      <Icon className={header.icon} />
+      <Icon handler={handler} className={header.icon} src={home} />
       {isAuth && isNotMain && <Navbar />}
       <ul className={header.wrapper}>
         {isAuth ? (

@@ -1,11 +1,14 @@
-import abil from './a.module.css';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setIsNotMain } from "../../redux/actions/isNMAC";
+import abil from "./a.module.css";
 
 const Ability = () => {
-    return (
-        <div>
-            Ability
-        </div>
-    );
+  const dispatch = useDispatch();
+
+  useEffect(() => dispatch(setIsNotMain(true)), []);
+
+  return <div>Ability</div>;
 };
 
 export default Ability;

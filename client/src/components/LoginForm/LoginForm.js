@@ -1,7 +1,5 @@
-import { useDispatch } from "react-redux";
-import { Link, useLocation, useHistory } from "react-router-dom";
-import { useInput } from "../../hooks";
-import { signIn, signUp } from "../../redux/actions/userAC";
+import { Link } from "react-router-dom";
+import { useLogin } from "../../hooks/useLogin";
 import { Squares } from "../stylesComponents/Squares";
 import Button from "../UI/Button/Button";
 import Error from "../UI/Error/Error";
@@ -9,26 +7,8 @@ import Input from "../UI/Input/Input";
 import login from "./login.module.css";
 
 const LoginForm = () => {
-  const name = useInput("", { isEmpty: true, minLength: 3, maxLength: 20 });
-  const email = useInput("", { isEmpty: true, minLength: 3, isEmail: true });
-  const password = useInput("", { isEmpty: true, minLength: 4, maxLength: 36 });
-
-  const dispatch = useDispatch();
-  const router = useHistory();
-
-  const signup = useLocation().pathname === "/signup";
-
-  const handler = (name, email, password) => {
-      
-    if (signup) {
-      dispatch(signUp(name.value, email.value, password.value));
-      router.push("/");
-    } else {
-      dispatch(signIn(email.value, password.value));
-      router.push("/");
-    }
-  };
-
+  const { name, email, password, signup, handler } = useLogin();
+  
   return (
     <div className={login.box}>
       <Squares />
@@ -78,14 +58,14 @@ const LoginForm = () => {
                 disabled={
                   !name.inputValid || !email.inputValid || !password.inputValid
                 }
-                onClick={() => handler(name, email, password)}
+                onClick={() => handler(email.value, password.value, name.value)}
               >
                 Создать аккаунт
               </Button>
             ) : (
               <Button
                 disabled={!email.inputValid || !password.inputValid}
-                onClick={() => handler(email, password)}
+                onClick={() => handler(email.value, password.value)}
               >
                 Войти
               </Button>

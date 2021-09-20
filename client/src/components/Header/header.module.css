@@ -42,3 +42,8 @@
   transform: translate(2px, 2px);
   opacity: 1;
 }
+
+.icon {
+  height: 68%;
+  width: 5%;
+}
