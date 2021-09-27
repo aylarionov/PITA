@@ -12,22 +12,24 @@ const PostModal = () => {
   };
 
   return (
-    <div className={post.container}>
-      <div className={post.header}>
-        <h2 className={post.title}>Title</h2>
-        <Icon
-          active={active}
-          handler={handler}
-          className={post.icon}
-          src={like}
-        />
-      </div>
+    <>
+      <div className={post.container}>
+        <div className={post.header}>
+          <h2 className={post.title}>Title</h2>
+          <Icon
+            active={active}
+            handler={handler}
+            className={post.icon}
+            src={like}
+          />
+        </div>
 
-      <div className={post.body}>
-        <p className={post.text}>Body</p>
-        <p className={post.tags}>tags</p>
+        <div className={post.body}>
+          <p className={post.text}>Body</p>
+          <p className={post.tags}>tags</p>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

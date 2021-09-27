@@ -5,17 +5,22 @@ import Toggle from "../UI/Toggle/Toggle";
 
 import postForm from "./postForm.module.css";
 
-const PostForm = () => {
+const PostForm = ({ title, P }) => {
   const choice = { left: "Видно всем", rigth: "Видно мне" };
+  const postClasses = [postForm.container];
+
+  if (!P) {
+    postClasses.push(postForm.background);
+  }
 
   return (
-    <div className={postForm.container}>
-      <dib className={postForm.header}>
-        <h2 className={postForm.title}>Место для проблем</h2>
+    <div className={postClasses.join(" ")}>
+      <div className={postForm.header}>
+        <h2 className={postForm.title}>{title}</h2>
         <div className={postForm.toggle}>
           <Toggle choice={choice} />
         </div>
-      </dib>
+      </div>
 
       <div className={postForm.form}>
         <Input

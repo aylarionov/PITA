@@ -7,7 +7,7 @@ const Arrow = ({ children, ...props }) => {
   return (
     <div className={arrow.wrapper}>
       <span {...props} class={arrowLeft.join(" ")} />
-      {children}
+      <div className={arrow.box}>{children}</div>
       <span {...props} class={arrowRigth.join(" ")} />
     </div>
   );

@@ -1,9 +1,10 @@
 .wrapper {
   position: absolute;
   padding: 20px;
-  /* width: 300px; */
-  min-height: 100px;
+  min-height: 50px;
+  max-width: 370px;
   transition: 0.5s all;
+  overflow-wrap: break-word;
   box-shadow: -3px 8px 8px rgba(0, 0, 0, 0.1);
   border: 2px solid rgba(207, 92, 120, 0.1);
   background: linear-gradient(
@@ -24,14 +25,18 @@
 
 .name {
   top: -50px;
-  left: -320px;
+  left: -410px;
 }
 
 .email {
-  right: -320px;
+  right: -410px;
 }
 
 .password {
-  bottom: -10px;
-  left: -320px;
+  left: -410px;
+}
+
+.default {
+  text-align: center;
+  bottom: -100px;
 }

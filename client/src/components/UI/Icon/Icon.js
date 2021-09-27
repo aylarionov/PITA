@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import icon from "./icon.module.css";
 
-const Icon = ({ src, handler, ...props }) => {
+const Icon = ({ children, src, handler, ...props }) => {
   const iconCleasses = [icon.icon];
 
   if (props.active) {
@@ -10,7 +10,12 @@ const Icon = ({ src, handler, ...props }) => {
 
   return (
     <div {...props}>
-      <img onClick={handler} className={iconCleasses.join(" ")} alt="icon" src={src} />
+      <img
+        onClick={handler}
+        className={iconCleasses.join(" ")}
+        alt="icon"
+        src={src}
+      />
     </div>
   );
 };

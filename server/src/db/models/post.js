@@ -2,7 +2,7 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Post extends Model {
-    static associate({ Tag, User }) {
+    static associate({ Tag, User, Like }) {
       this.belongsTo(User, { foreignKey: "UserId" });
       this.belongsToMany(Tag, {
         foreignKey: "PostId",
@@ -30,7 +30,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         allowNull: false,
       },
-      likes: DataTypes.ARRAY(DataTypes.INTEGER),
       aproved: DataTypes.BOOLEAN,
       insight: DataTypes.BOOLEAN,
       UserId: DataTypes.INTEGER,

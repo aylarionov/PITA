@@ -6,7 +6,7 @@
   height: 40px;
   top: 35px;
   right: 300px;
-  z-index: 5000;
+  z-index: 100;
 }
 
 .toggle {

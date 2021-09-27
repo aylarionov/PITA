@@ -1,10 +1,9 @@
+import { useEffect } from "react";
 import error from "./error.module.css";
 
 const Error = ({ errors, type }) => {
   const errorClasses = [error.wrapper];
-  const errorsArr = Object.values(errors);
-  
-  console.log(errorsArr)
+
   switch (type) {
     case "name":
       errorClasses.push(error.name);
@@ -16,22 +15,26 @@ const Error = ({ errors, type }) => {
       errorClasses.push(error.password);
       break;
     default:
+      errorClasses.push(error.default);
       break;
   }
 
   return (
     <div className={errorClasses.join(" ")}>
-      <h4>Упс... поле {type}:</h4>
-      <ul className={error.lists}>
-        {errorsArr.map(
-          (el, i) =>
-            el && (
-              <li key={i} className={error.error}>
-                {el}
+      {type ? (
+        <>
+          <h4>Упс... поле {type}:</h4>
+          <ul className={error.lists}>
+            {errors.map((el, i) => (
+              <li key={i}>
+                {Object.values(el)[0]}
               </li>
-            )
-        )}
-      </ul>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <p className={error.lists}>{errors}</p>
+      )}
     </div>
   );
 };

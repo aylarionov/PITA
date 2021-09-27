@@ -26,7 +26,7 @@ module.exports = async function (req, res, next) {
 
     if (user.role && user.role !== "admin") {
       console.log("ты не админ");
-      return next(ApiError.UnauthorizedError());
+      return next(ApiError.Forbidden());
     }
 
     req.user = userData;

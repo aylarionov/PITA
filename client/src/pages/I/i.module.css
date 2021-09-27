@@ -1,14 +1,9 @@
 .container {
   position: relative;
   width: 100%;
-  height: 92%;
+  height: 100%;
   display: grid;
   grid-template-columns: 1fr 3fr;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(240, 238, 233, 1) 50%
-  );
 }
 
 .postWrapper {

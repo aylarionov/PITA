@@ -4,6 +4,7 @@ const ApiError = require("../exceptions/api.error");
 
 async function signUp(req, res, next) {
   try {
+    console.log('1',req)
     const errores = validationResult(req);
 
     if (!errores.isEmpty()) {
@@ -40,7 +41,6 @@ async function signOut(req, res, next) {
   try {
     const { refreshToken } = req.cookies;
 
-    const token = await userService.signOut(refreshToken);
     res.clearCookie("refreshToken");
 
     return res.status(200).end();

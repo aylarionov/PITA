@@ -7,16 +7,18 @@ export const setUser = (user) => ({
   payload: user,
 });
 
-export const signUp = (name, email, password) => async (dispatch) => {
+export const signUp = (email, password, name) => async (dispatch) => {
   try {
-    const res = await AuthService.signUp(name, email, password);
+    
+    const res = await AuthService.signUp(email, password, name);
     
     localStorage.setItem("token", res.data.accessToken);
 
     dispatch(setAuth(true));
     dispatch(setUser(res.data.user));
+    return ('ok')
   } catch (e) {
-    console.log(e.response?.data?.message);
+    return e.response?.data?.message;
   }
 };
 
@@ -28,8 +30,9 @@ export const signIn = (email, password) => async (dispatch) => {
    
     dispatch(setAuth(true));
     dispatch(setUser(res.data.user));
+    return ('ok')
   } catch (e) {
-    console.log(e.response?.data?.message);
+    return e.response?.data?.message;
   }
 };
 

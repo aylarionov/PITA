@@ -1,14 +1,16 @@
 import { useState } from "react";
 import toggle from "./toggle.module.css";
 
-const Toggle = ({ choice }) => {
+const Toggle = ({ choice, setChoice }) => {
   const [on, setOn] = useState({});
 
-  function toggleHandler(e) {
+  function toggleHandler() {
     if (on.left) {
       setOn({ right: "18px" });
+      setChoice(prev => !prev);
     } else {
       setOn({ left: "18px" });
+      setChoice(prev => !prev);
     }
   }
 
@@ -19,7 +21,7 @@ const Toggle = ({ choice }) => {
         <div className={toggle.toggle}>
           <i
             className={toggle.indicator}
-            onClick={(e) => toggleHandler(e)}
+            onClick={toggleHandler}
             style={on}
           ></i>
         </div>

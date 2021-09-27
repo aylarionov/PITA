@@ -34,7 +34,6 @@ module.exports = {
           key: "id",
         },
       },
-      likes: Sequelize.ARRAY(Sequelize.INTEGER),
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

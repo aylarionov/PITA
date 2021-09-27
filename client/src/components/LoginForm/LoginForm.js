@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
 import { Squares } from "../stylesComponents/Squares";
@@ -7,8 +8,8 @@ import Input from "../UI/Input/Input";
 import login from "./login.module.css";
 
 const LoginForm = () => {
-  const { name, email, password, signup, handler } = useLogin();
-  
+  const { name, email, password, signup, handler, userError } = useLogin();
+
   return (
     <div className={login.box}>
       <Squares />
@@ -19,28 +20,29 @@ const LoginForm = () => {
         <div className={login.form}>
           {signup && (
             <>
-              {name.isDirty && <Error type="name" errors={name.errors} />}
+              {name.isDirty && name.errors.length > 0 && (
+                <Error type="name" errors={name.errors} />
+              )}
               <Input
                 onBlur={(e) => name.onBlur(e)}
                 onChange={(e) => name.onChange(e)}
                 value={name.value}
                 placeholder="Name"
                 autocomplete="off"
-                name="name"
               />
             </>
           )}
-          {email.isDirty && <Error type="email" errors={email.errors} />}
+          {email.isDirty && email.errors.length > 0 && (
+            <Error type="email" errors={email.errors} />
+          )}
           <Input
             onBlur={(e) => email.onBlur(e)}
             onChange={(e) => email.onChange(e)}
             value={email.value}
             placeholder="Email"
             autocomplete="off"
-            type="email"
-            name="email"
           />
-          {password.isDirty && (
+          {password.isDirty && password.errors.length > 0 && (
             <Error type="password" errors={password.errors} />
           )}
           <Input
@@ -50,7 +52,6 @@ const LoginForm = () => {
             type="password"
             autocomplete="off"
             placeholder="Password"
-            name="password"
           />
           <div className={login.button}>
             {signup ? (
@@ -87,6 +88,7 @@ const LoginForm = () => {
             </Link>
           </p>
         )}
+        {userError && <Error errors={userError} />}
       </div>
     </div>
   );

@@ -33,6 +33,7 @@ module.exports = {
           values: ["admin", "moderator"],
         }),
       },
+      likes: Sequelize.ARRAY(Sequelize.INTEGER),
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

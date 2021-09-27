@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import PostForm from "../../components/PostForm/PostForm";
 import { setIsNotMain } from "../../redux/actions/isNMAC";
 import abil from "./a.module.css";
 
@@ -8,7 +9,11 @@ const Ability = () => {
 
   useEffect(() => dispatch(setIsNotMain(true)), []);
 
-  return <div>Ability</div>;
+  return (
+    <div className={abil.container}>
+      <PostForm title='Вот оно решение!'/>
+    </div>
+  );
 };
 
 export default Ability;

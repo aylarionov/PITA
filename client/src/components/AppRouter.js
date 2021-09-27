@@ -16,7 +16,7 @@ const AppRouter = () => {
           key={route.path}
         />
       ))}
-      <Redirect to={PAIN_ROUTE} />
+      {/* <Redirect to={PAIN_ROUTE} /> */}
     </Switch>
   ) : (
     <Switch>
