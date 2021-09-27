@@ -11,7 +11,7 @@ const Pain = () => {
 
   return (
     <div className={pain.container}>
-      <PostForm title="Место для проблем" P={true} />
+      <PostForm titl="Место для проблем" P={true} />
     </div>
   );
 };

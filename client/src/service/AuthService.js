@@ -1,12 +1,11 @@
 import $api from "../http";
 
 const signIn = async (email, password) => {
-  return $api.post("user/signin", { email, password });
+  return $api.post("user/signin", { data: { email, password } });
 };
 
 const signUp = async (email, password, name) => {
-  console.log({email, password, name});
-  return $api.post("user/signup", { email, password, name });
+  return $api.post("user/signup", { data: { email, password, name } });
 };
 
 const signOut = async () => {

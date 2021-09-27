@@ -1,4 +1,4 @@
-const { User, Sequelize } = require("../db/models");
+const { User} = require("../db/models");
 const bcrypt = require("bcrypt");
 const uuid = require("uuid");
 const mailService = require("./mail.service");

@@ -4,13 +4,12 @@ const ApiError = require("../exceptions/api.error");
 
 async function signUp(req, res, next) {
   try {
-    console.log('1',req)
     const errores = validationResult(req);
 
     if (!errores.isEmpty()) {
       return next(ApiError.BadRequest("Ошибка при валидации", errores.array()));
     }
-    const { email, name, password } = req.body;
+    const { email, name, password } = req.body.data;
 
     const userData = await userService.signUp(email, name, password);
     res.cookie("refreshtoken", userData.refreshToken, {
@@ -25,7 +24,7 @@ async function signUp(req, res, next) {
 
 async function signIn(req, res, next) {
   try {
-    const { email, password } = req.body;
+    const { email, password } = req.body.data;
     const userData = await userService.signIn(email, password);
     res.cookie("refreshToken", userData.refreshToken, {
       maxAge: 2592e6,
@@ -39,8 +38,6 @@ async function signIn(req, res, next) {
 
 async function signOut(req, res, next) {
   try {
-    const { refreshToken } = req.cookies;
-
     res.clearCookie("refreshToken");
 
     return res.status(200).end();

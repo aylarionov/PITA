@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useValidation } from "./useValidation";
 
 export const useInput = (initialValue, validations) => {
@@ -16,8 +16,15 @@ export const useInput = (initialValue, validations) => {
     }
   };
 
+  useEffect(() => {
+    return function() {
+      setValue('');
+    }
+  }, [])
+
   return {
     value,
+    setValue,
     onChange,
     onBlur,
     isDirty,

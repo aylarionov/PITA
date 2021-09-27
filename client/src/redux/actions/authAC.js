@@ -12,7 +12,7 @@ export const setAuth = (bool) => ({
 export const checkAuth = () => async (dispatch) => {
   dispatch(setLoading(true));
   try {
-    const res = await axios.get(`${API_URL}/refresh`, {
+    const res = await axios.get(`${API_URL}/user/refresh`, {
       withCredentials: true,
     });
 

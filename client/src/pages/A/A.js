@@ -11,7 +11,7 @@ const Ability = () => {
 
   return (
     <div className={abil.container}>
-      <PostForm title='Вот оно решение!'/>
+      <PostForm titl='Вот оно решение!'/>
     </div>
   );
 };

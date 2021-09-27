@@ -14,6 +14,9 @@ const Error = ({ errors, type }) => {
     case "password":
       errorClasses.push(error.password);
       break;
+    case "post":
+      errorClasses.push(error.post);
+      break;
     default:
       errorClasses.push(error.default);
       break;
@@ -26,9 +29,7 @@ const Error = ({ errors, type }) => {
           <h4>Упс... поле {type}:</h4>
           <ul className={error.lists}>
             {errors.map((el, i) => (
-              <li key={i}>
-                {Object.values(el)[0]}
-              </li>
+              <li key={i}>{Object.values(el)[0]}</li>
             ))}
           </ul>
         </>
