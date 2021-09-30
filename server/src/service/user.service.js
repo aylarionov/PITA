@@ -26,10 +26,10 @@ const signUp = async (email, name, password) => {
     activationLink,
   });
 
-  //   await mailService.sendActivationMail(
-  //     email,
-  //     `${process.env.API_URL}/api/activate/${activationLink}`
-  //   );
+    // await mailService.sendActivationMail(
+    //   email,
+    //   `${process.env.API_URL}/api/activate/${activationLink}`
+    // );
 
   return helperUT(user);
 };

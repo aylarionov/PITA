@@ -4,7 +4,7 @@ const ApiError = require("../exceptions/api.error");
 
 async function signUp(req, res, next) {
   try {
-    const errores = validationResult(req);
+    const errores = validationResult(req.body.data);
 
     if (!errores.isEmpty()) {
       return next(ApiError.BadRequest("Ошибка при валидации", errores.array()));
