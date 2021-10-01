@@ -2,13 +2,13 @@ const { Post, Tag, Tag_Post } = require("../db/models");
 
 const createPost = async (title, body, privateStatus, tag, insight, UserId) => {
   const post = await Post.create({
-    title,
-    body,
+    title: title.trim(),
+    body: body.trim(),
     private: privateStatus,
     insight,
     UserId,
   });
-  
+
   const arrayTag = tag.replace(/\s/g, "").toLowerCase().split("#");
   const postTags = [];
 
@@ -29,10 +29,85 @@ const createPost = async (title, body, privateStatus, tag, insight, UserId) => {
       }
     }
   }
-  
-  return { title, body, private: privateStatus, tags: Array.from(new Set(postTags)) };
+
+  return {
+    title,
+    body,
+    private: privateStatus,
+    tags: Array.from(new Set(postTags)),
+  };
 };
+
+const getAllPosts = async (id = null) => {
+  if (id) {
+    const posts = await Post.findAll({
+      where: { UserId: id },
+      attributes: ["title", "body", "private", "insight"],
+      include: [
+        {
+          model: Tag,
+          as: "tags",
+          attributes: ["name"],
+          through: { attributes: [] },
+        },
+      ],
+    });
+
+    posts.forEach((post) => {
+      post = tagsHandler(post);
+    });
+
+    return posts;
+  }
+
+  const posts = await Post.findAll({
+    where: { private: false },
+    attributes: ["title", "body", "insight"],
+    include: [
+      {
+        model: Tag,
+        as: "tags",
+        attributes: ["name"],
+        through: { attributes: [] },
+      },
+    ],
+  });
+
+  posts.forEach((post) => {
+    post = tagsHandler(post);
+  });
+  return posts;
+};
+
+const getPost = async (id) => {
+  const post = await Post.findOne({
+    where: { id: id },
+    attributes: ["title", "body"],
+    include: [
+      {
+        model: Tag,
+        as: "tags",
+        attributes: ["name"],
+        through: { attributes: [] },
+      },
+    ],
+  });
+
+  return tagsHandler(post);
+};
+
+function tagsHandler(post) {
+  const tags = [];
+  post.dataValues.tags.forEach((tag) => {
+    tags.push(`#${Object.values(tag.dataValues)}`);
+  });
+
+  post.dataValues.tags = tags.join(" ");
+  return post;
+}
 
 module.exports = {
   createPost,
+  getPost,
+  getAllPosts,
 };

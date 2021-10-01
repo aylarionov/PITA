@@ -24,7 +24,7 @@ const Error = ({ errors, type }) => {
 
   return (
     <div className={errorClasses.join(" ")}>
-      {type ? (
+      {type !== "post" ? (
         <>
           <h4>Упс... поле {type}:</h4>
           <ul className={error.lists}>

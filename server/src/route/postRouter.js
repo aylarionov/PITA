@@ -3,4 +3,12 @@ const postController = require("../controllers/post.controller");
 
 router.post("/", postController.create);
 
+router.post("/like", postController.getAllLikes);
+router.put("/like", postController.changeLikeStatus);
+
+router.get("/post", postController.getAllPosts);
+router.post("/post", postController.getAllPosts);
+
+router.get("/post/:id", postController.getPost);
+
 module.exports = router;

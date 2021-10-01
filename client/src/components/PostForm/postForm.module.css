@@ -50,4 +50,6 @@
 
 .form {
   position: relative;
+  height: 58%;
+  width: 100%;
 }

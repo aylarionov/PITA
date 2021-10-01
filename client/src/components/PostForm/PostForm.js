@@ -1,9 +1,8 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router";
 import { usePost } from "../../hooks/usePost";
 import Button from "../UI/Button/Button";
 import Error from "../UI/Error/Error";
 import Input from "../UI/Input/Input";
+import Response from "../UI/Response/Response";
 import Textarea from "../UI/Textarea/Textarea";
 import Toggle from "../UI/Toggle/Toggle";
 
@@ -22,6 +21,7 @@ const PostForm = ({ titl, P }) => {
     handler,
     postError,
     insight,
+    send,
   } = usePost();
 
   if (!P) {
@@ -36,34 +36,46 @@ const PostForm = ({ titl, P }) => {
         </div>
       </div>
       <div className={postForm.form}>
-        <Input
-          placeholder="Тема, название, заглавная часть"
-          autocomplete="off"
-          value={title.value}
-          onBlur={(e) => title.onBlur(e)}
-          onChange={(e) => title.onChange(e)}
-        />
-        <Textarea
-          placeholder="Сама суть..."
-          value={body.value}
-          onBlur={(e) => body.onBlur(e)}
-          onChange={(e) => body.onChange(e)}
-        />
-        <Input
-          placeholder="#tags"
-          autocomplete="off"
-          value={tag.value}
-          onBlur={(e) => tag.onBlur(e)}
-          onChange={(e) => tag.onChange(e)}
-        />
-        <Button
-          onClick={() =>
-            handler(title.value, body.value, tag.value, privateStatus, insight)
-          }
-        >
-          Отправить
-        </Button>
-        {postError.length > 0 && <Error errors={postError} />}
+        {send ? (
+          <Response>Ваш пост успешно создан!</Response>
+        ) : (
+          <>
+            <Input
+              placeholder="Тема, название, заглавная часть"
+              autoComplete="off"
+              value={title.value}
+              onBlur={(e) => title.onBlur(e)}
+              onChange={(e) => title.onChange(e)}
+            />
+            <Textarea
+              placeholder="Сама суть..."
+              value={body.value}
+              onBlur={(e) => body.onBlur(e)}
+              onChange={(e) => body.onChange(e)}
+            />
+            <Input
+              placeholder="#tags"
+              autoComplete="off"
+              value={tag.value}
+              onBlur={(e) => tag.onBlur(e)}
+              onChange={(e) => tag.onChange(e)}
+            />
+            <Button
+              onClick={() =>
+                handler(
+                  title.value,
+                  body.value,
+                  tag.value,
+                  privateStatus,
+                  insight
+                )
+              }
+            >
+              Отправить
+            </Button>
+            {postError.length > 0 && <Error type="post" errors={postError} />}
+          </>
+        )}
       </div>
     </div>
   );

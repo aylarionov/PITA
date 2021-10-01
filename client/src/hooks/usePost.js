@@ -11,6 +11,7 @@ export const usePost = () => {
   const [privateStatus, setPrivateStatus] = useState(true);
   const user = useSelector((state) => state.user);
   const [postError, setPostError] = useState("");
+  const [send, setSend] = useState(false);
   const insight = useLocation().pathname === "/ability";
 
   const router = useHistory();
@@ -22,7 +23,10 @@ export const usePost = () => {
     );
 
     if (res === "ok") {
-      insight ? router.push("/") : router.push("/inspiration");
+      setSend((prev) => !prev);
+      setTimeout(() => {
+        insight ? router.push("/") : router.push("/inspiration");
+      }, 1500);
     } else {
       setPostError(res);
     }
@@ -37,5 +41,6 @@ export const usePost = () => {
     handler,
     postError,
     insight,
+    send
   };
 };
