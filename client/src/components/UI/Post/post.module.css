@@ -51,10 +51,11 @@
 }
 
 .post {
-  max-height: 100%;
+  max-height: 400px;
   white-space: wrap;
   word-break: break-all;
-  overflow: hidden;
+  /* overflow: scroll; */
+  /* resize: none; */
   text-overflow: ellipsis;
 }
 

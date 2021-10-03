@@ -42,7 +42,7 @@ const getAllPosts = async (id = null) => {
   if (id) {
     const posts = await Post.findAll({
       where: { UserId: id },
-      attributes: ["title", "body", "private", "insight"],
+      attributes: ["id", "title", "body", "private", "insight"],
       include: [
         {
           model: Tag,
@@ -60,9 +60,15 @@ const getAllPosts = async (id = null) => {
     return posts;
   }
 
+  const count = await Post.count({ where: { private: false } });
+  let offset = 0;
+  if (count > 20) {
+    offset = Math.floor((count - 1) * Math.random() + 1);
+  }
+  
   const posts = await Post.findAll({
     where: { private: false },
-    attributes: ["title", "body", "insight"],
+    attributes: ["id", "title", "body", "insight"],
     include: [
       {
         model: Tag,
@@ -71,6 +77,8 @@ const getAllPosts = async (id = null) => {
         through: { attributes: [] },
       },
     ],
+    offset: offset,
+    limit: 20,
   });
 
   posts.forEach((post) => {

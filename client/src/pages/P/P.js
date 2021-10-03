@@ -7,7 +7,7 @@ import pain from "./p.module.css";
 const Pain = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => [dispatch(setIsNotMain(true))], []);
+  useEffect(() => dispatch(setIsNotMain(true)), []);
 
   return (
     <div className={pain.container}>

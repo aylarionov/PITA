@@ -52,9 +52,9 @@ const changeLikeStatus = async (req, res, next) => {
   try {
     const { UserId, PostId } = req.body.data;
 
-    await likeService.changeLikeStatus(UserId, PostId);
+    const result = await likeService.changeLikeStatus(UserId, PostId);
 
-    res.sendStatus(200);
+    res.send(result);
   } catch (e) {
     next(e);
   }
@@ -62,19 +62,31 @@ const changeLikeStatus = async (req, res, next) => {
 
 const getAllLikes = async (req, res, next) => {
   try {
-    const {UserId} = req.body.data;
+    const { UserId } = req.body.data;
     const likes = await likeService.getAllLikes(UserId);
 
     res.json(likes);
   } catch (e) {
-    next(e)
+    next(e);
   }
-}
+};
+
+const getLikesPosts = async (req, res, next) => {
+  try {
+    const UserId = req.params.id;
+
+    const likesPosts = await likeService.getLikesPosts(UserId);
+    res.json(likesPosts);
+  } catch (e) {
+    next(e);
+  }
+};
 
 module.exports = {
   create,
   getPost,
   getAllPosts,
   changeLikeStatus,
-  getAllLikes
+  getAllLikes,
+  getLikesPosts,
 };

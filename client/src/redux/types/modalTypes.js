@@ -1,0 +1,1 @@
+export const MODAL_ACTIVE = "MODAL_ACTIVE";

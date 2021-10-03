@@ -7,11 +7,11 @@ import abil from "./a.module.css";
 const Ability = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => dispatch(setIsNotMain(true)), []);
+  useEffect(() => dispatch(setIsNotMain({ isNotMain: true })), []);
 
   return (
     <div className={abil.container}>
-      <PostForm titl='Вот оно решение!'/>
+      <PostForm titl="Вот оно решение!" />
     </div>
   );
 };

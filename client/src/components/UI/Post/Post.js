@@ -1,22 +1,20 @@
 import Button from "../Button/Button";
 import post from "./post.module.css";
 
-const Post = (props) => {
+const Post = ({ data, handler, showAbility }) => {
   const postClasses = [post.wrapper];
 
-  if (props.ability) {
+  if (showAbility) {
     postClasses.push(post.background);
   }
-
+  
   return (
     <div className={postClasses.join(" ")}>
-      <h2 className={post.title}>title</h2>
+      <h2 className={post.title}>{data?.title}</h2>
       <div className={post.text}>
-        <p className={post.post}>
-          loaderReducersdfdsfdsfdsfdsfdsfsdfdsloaderReducersdfdsfdsfdsfdsfdsfsdfdsloaderReducersdfdsfdsfdsfdsfdsfsdfdsloaderReducersdfdsfdsfdsfdsfdsfsdfdsloaderReducersdfdsfdsfdsfdsfdsfsdfdsloaderReducersdfdsfdsfdsfdsfdsfsdfdsloaderReducersdfdsfdsfdsfdsfdsfsdfdsloaderReducersdfdsfdsfdsfdsfdsfsdfdsloaderReducersdfdsfdsfdsfdsfdsfsdfdsloaderReducersdfdsfdsfdsfdsfdsfsdfdsloaderReducersdfdsfdsfdsfdsfdsfsdfdsloaderReducersdfdsfdsfdsfdsfdsfsdfdsloaderReducersdfdsfdsfdsfdsfdsfsdfdsloaderReducersdfdsfdsfdsfdsfdsfsdfdsloaderReducersdfdsfdsfdsfdsfdsfsdfdsloaderReducersdfdsfdsfdsfdsfdsfsdfdsloaderReducersdfdsfdsfdsfdsfdsfsdfds
-        </p>
+        <p className={post.post}>{data?.body}</p>
       </div>
-      <Button onClick={() => props.setActive(true)}>Открыть</Button>
+      <Button disabled={data?.title ? false : true} onClick={handler}>Открыть</Button>
     </div>
   );
 };

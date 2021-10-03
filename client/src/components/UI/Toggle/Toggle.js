@@ -1,16 +1,20 @@
 import { useState } from "react";
 import toggle from "./toggle.module.css";
 
-const Toggle = ({ choice, setChoice }) => {
+const Toggle = ({ choice, setChoice, setIndex = null }) => {
   const [on, setOn] = useState({});
 
   function toggleHandler() {
     if (on.left) {
       setOn({ right: "18px" });
-      setChoice(prev => !prev);
+      setChoice((prev) => !prev);
+      
     } else {
       setOn({ left: "18px" });
-      setChoice(prev => !prev);
+      setChoice((prev) => !prev);
+      if (setIndex) {
+        setIndex(0);
+      }
     }
   }
 
